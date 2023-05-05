@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 22:41:06 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:45:45 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	*ft_fillbuffer(int fd, char *result)
 	int		read_bytes;
 
 	if (!result)
-		result = malloc(sizeof(char) * 1);
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+		result = ft_calloc(1,1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{
@@ -39,7 +39,7 @@ char	*ft_fillbuffer(int fd, char *result)
 			free(buffer);
 			return (NULL);
 		}
-		buffer[read_bytes] = '\0';
+		buffer[read_bytes] = 0;
 		result = ft_free(result, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
@@ -58,7 +58,7 @@ char	*get_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc((i + 2) , sizeof(char));
+	line = ft_calloc(i + 2 , sizeof(char));
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 	{
@@ -67,8 +67,7 @@ char	*get_line(char *buffer)
 	}
 	if (buffer[i] && buffer[i] == '\n')
 	{
-		i++;
-		line[i] = '\n';
+		line[i++] = '\n';
 	}
 	return (line);
 }
@@ -88,13 +87,11 @@ char	*clean_buffer(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	clean_buffer = ft_calloc((ft_strlen(buffer) - (i + 1)) , sizeof(char));
+	clean_buffer = ft_calloc((ft_strlen(buffer) - i + 1)) , sizeof(char));
 	i++;
 	while (buffer[i])
 	{
-		clean_buffer[k] = buffer[i];
-		i++;
-		k++;
+		clean_buffer[k++] = buffer[i++];
 	}
 	free(buffer);
 	return (clean_buffer);
