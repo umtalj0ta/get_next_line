@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 21:09:41 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:15:50 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_line(char *buffer)
 	{
 		i++;
 		line[i] = '\n';
-	}	
+	}
 	return (line);
 }
 
@@ -73,11 +73,11 @@ char	*clean_buffer(char *buffer)
 	k = 0;
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if(!buffer[i])
+	if (!buffer[i])
 	{
 		free(buffer);
-		return(NULL);
-	}	
+		return (NULL);
+	}
 	clean_buffer = malloc(sizeof(char) * (ft_strlen(buffer) - (i + 1)));
 	i++;
 	while (buffer[i])
