@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 22:46:46 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:47:49 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ char	*get_line(char *buffer)
 	}
 	if (buffer[i] && buffer[i] == '\n')
 	{
-		line[i++] = '\n';
+		line[i] = '\n';
+		i++;
 	}
 	return (line);
 }
@@ -91,7 +92,9 @@ char	*clean_buffer(char *buffer)
 	i++;
 	while (buffer[i])
 	{
-		clean_buffer[k++] = buffer[i++];
+		clean_buffer[k] = buffer[i];
+		i++;
+		k++;
 	}
 	free(buffer);
 	return (clean_buffer);
