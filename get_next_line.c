@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 23:05:07 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:07:44 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,30 +115,30 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int fd;
 	char *line;
 
 	fd = open("test.txt", O_RDONLY);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 	line = get_next_line(fd);
-	printf("LINE : %s\n", line);
+	printf("LINE : %s", line);
 	free(line);
 
 	close(fd);
-}*/
+}
