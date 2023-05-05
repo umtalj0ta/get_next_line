@@ -6,15 +6,14 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:32 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 21:07:14 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:46:06 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <fcntl.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include<stdio.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 7000
@@ -23,4 +22,6 @@
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
-int	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
+void    *ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);

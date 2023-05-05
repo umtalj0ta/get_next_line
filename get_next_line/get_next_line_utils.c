@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 21:28:38 by jgomes-v          #+#    #+#             */
+/*   Updated: 2023/05/05 21:36:31 by jgomes-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strlen(const char *s)
@@ -60,3 +72,27 @@ char	*ft_strchr(const char *s, int c)
 	return (string + i);
 }
 
+void    *ft_calloc(size_t nmemb, size_t size)
+{
+        void    *hold;
+
+        hold = malloc(size * nmemb);
+        if (!hold)
+                return (NULL);
+        ft_bzero(hold, nmemb * size);
+        return (hold);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
+}
