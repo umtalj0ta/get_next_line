@@ -6,11 +6,21 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 21:54:16 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:33:57 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_free(char *buffer, char *buf)
+{
+	char	*temp;
+
+	temp = ft_strjoin(buffer, buf);
+	free(buffer);
+	return (temp);
+}
+
 
 char	*ft_fillbuffer(int fd, char *result)
 {
@@ -19,7 +29,7 @@ char	*ft_fillbuffer(int fd, char *result)
 
 	if (!result)
 		result = malloc(sizeof(char) * 1);
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = ft_calloc(sizeof(char) , (BUFFER_SIZE + 1));
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{
@@ -30,7 +40,7 @@ char	*ft_fillbuffer(int fd, char *result)
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		result = ft_strjoin(result, buffer);
+		result = ft_free(result, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -78,7 +88,7 @@ char	*clean_buffer(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	clean_buffer = malloc(sizeof(char) * (ft_strlen(buffer) - (i + 1)));
+	clean_buffer = ft_calloc(sizeof(char) , (ft_strlen(buffer) - (i + 1)));
 	i++;
 	while (buffer[i])
 	{
@@ -105,7 +115,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int fd;
 	char *line;
@@ -131,4 +141,4 @@ int	main(void)
 	free(line);
 
 	close(fd);
-}
+}*/

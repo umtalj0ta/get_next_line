@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:32 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 21:46:06 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:33:50 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,4 @@ char	*ft_strchr(const char *s, int c);
 int		ft_strlen(const char *s);
 void    *ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
+char	*ft_free(char *buffer, char *buf);
