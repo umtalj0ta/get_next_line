@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 22:33:57 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:38:37 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_fillbuffer(int fd, char *result)
 
 	if (!result)
 		result = malloc(sizeof(char) * 1);
-	buffer = ft_calloc(sizeof(char) , (BUFFER_SIZE + 1));
+	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{
@@ -58,7 +58,7 @@ char	*get_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc(sizeof(char) , (i + 2));
+	line = ft_calloc((i + 2) , sizeof(char));
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 	{
@@ -88,7 +88,7 @@ char	*clean_buffer(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	clean_buffer = ft_calloc(sizeof(char) , (ft_strlen(buffer) - (i + 1)));
+	clean_buffer = ft_calloc((ft_strlen(buffer) - (i + 1)) * sizeof(Char));
 	i++;
 	while (buffer[i])
 	{
