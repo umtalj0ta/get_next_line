@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 22:40:27 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 22:41:06 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*clean_buffer(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	clean_buffer = ft_calloc((ft_strlen(buffer) - (i + 1)) * sizeof(char));
+	clean_buffer = ft_calloc((ft_strlen(buffer) - (i + 1)) , sizeof(char));
 	i++;
 	while (buffer[i])
 	{
