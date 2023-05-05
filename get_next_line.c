@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 23:02:29 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:05:07 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_fillbuffer(int fd, char *result)
 			free(buffer);
 			return (NULL);
 		}
-		buffer[read_bytes] = 0;
+		buffer[read_bytes] = '\0';
 		result = ft_free(result, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
