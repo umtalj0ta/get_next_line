@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:28:38 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 21:36:31 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:45:22 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!joinstring)
 		return (NULL);
 	count = 0;
-	if (!s1 | !s2)
+	if (!s1 || !s2)
 		return (NULL);
 	while (count < s1len)
 	{

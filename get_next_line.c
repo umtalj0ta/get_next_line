@@ -6,20 +6,11 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 23:07:44 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/06 00:08:51 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_free(char *buffer, char *buf)
-{
-	char	*temp;
-
-	temp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (temp);
-}
 
 
 char	*ft_fillbuffer(int fd, char *result)
@@ -40,11 +31,13 @@ char	*ft_fillbuffer(int fd, char *result)
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		result = ft_free(result, buffer);
+		result = ft_strjoin(result, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
 	free(buffer);
+	if(!result)
+		return (NULL);
 	return (result);
 }
 
@@ -105,7 +98,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, buffer, BUFFER_SIZE) < 0)
 		return (NULL);
 	buffer = ft_fillbuffer(fd, buffer);
 	if (!buffer)

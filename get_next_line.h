@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:32 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/05 22:33:50 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:46:35 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 7000
+# define BUFFER_SIZE 3000
 #endif
 
 char	*get_next_line(int fd);
