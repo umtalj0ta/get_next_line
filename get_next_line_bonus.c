@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/05/08 12:52:28 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:52:43 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_free(char *buffer, char *buf)
 {
@@ -21,7 +21,7 @@ char	*ft_free(char *buffer, char *buf)
 	return (temp);
 }
 
-static char	*ft_fillbuffer(int fd, char *result)
+char	*ft_fillbuffer(int fd, char *result)
 {
 	char	*buffer;
 	int		read_bytes;
@@ -49,7 +49,7 @@ static char	*ft_fillbuffer(int fd, char *result)
 	return (result);
 }
 
-static char	*get_the_line(char *buffer)
+char	*get_the_line(char *buffer)
 {
 	char	*line;
 	int		i;
@@ -74,7 +74,7 @@ static char	*get_the_line(char *buffer)
 	return (line);
 }
 
-static char	*clean_buffer(char *buffer)
+char	*clean_buffer(char *buffer)
 {
 	char	*clean_buffer;
 	int		i;
@@ -103,21 +103,21 @@ static char	*clean_buffer(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[MAX_FILES];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd >= MAX_FILES)
 		return (NULL);
-	buffer = ft_fillbuffer(fd, buffer);
-	if (!buffer[0])
+	buffer[fd] = ft_fillbuffer(fd, buffer[fd]);
+	if (!buffer[fd][0])
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 	}
-	if (!buffer)
+	if (!buffer[fd])
 		return (NULL);
-	line = get_the_line(buffer);
-	buffer = clean_buffer(buffer);
+	line = get_the_line(buffer[fd]);
+	buffer[fd] = clean_buffer(buffer[fd]);
 	return (line);
 }
 
