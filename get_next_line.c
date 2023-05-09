@@ -45,6 +45,7 @@ static char	*refresh_buffer(char *line)
 		free(backup);
 		backup = NULL;
 	}
+	line[count] = '\n';
 	line[count + 1] = '\0';
 	return (backup);
 }
