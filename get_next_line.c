@@ -11,6 +11,7 @@ static char	*ft_read(int fd, char *buf, char *backup)
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
+			backup = NULL;
 			return (NULL);
 		}	
 		else if (read_bytes == 0)
@@ -55,7 +56,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*backup;
 
-	if (fd < 0 || BUFFER_SIZE <= 0);
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
@@ -69,23 +70,23 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	int fd;
-	char *line;
+// int	main(void)
+// {
+// 	int fd;
+// 	char *line;
 
-	fd = open("test.txt", O_RDONLY);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
+// 	fd = open("test.txt", O_RDONLY);
+// 	line = get_next_line(fd);
+// 	printf("%s", line);
+// 	line = get_next_line(-1);
+// 	printf("%s", line);
+// 	line = get_next_line(fd);
+// 	printf("%s", line);
+// 	line = get_next_line(fd);
+// 	printf("%s", line);
+// 	line = get_next_line(fd);
+// 	printf("%s", line);
 
-	close(fd);
-	return (0);
-}
+// 	close(fd);
+// 	return (0);
+// }
