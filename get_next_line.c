@@ -11,7 +11,7 @@ static char	*ft_line(int fd, char *buf, char *backup)
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			*backup = NULL;
+			*backup = '\0';
 			return (NULL);
 		}	
 		else if (read_bytes == 0)
