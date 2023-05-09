@@ -13,10 +13,10 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int i);
+char	*ft_strchr(const char *buffer, int to_find);
 char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_join(char *previous, const char *current);
 char	*get_next_line(int fd);
-void	*ft_memset(void *s, int c, size_t n);
+
 
 #endif

@@ -1,27 +1,17 @@
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	unsigned char	*pdest;
+	unsigned char	*psrc;
 
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (str == 0)
+	if (!dest && !src)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+	pdest = (unsigned char *)dest;
+	psrc = (unsigned char *)src;
+	while (n--)
+		*pdest++ = *psrc++;
+	return (dest);
 }
 
 int	ft_strlen(const char *str)
@@ -29,22 +19,26 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int i)
+char	*ft_strchr(const char *buffer, int to_find)
 {
-	while (*s)
+	if (!buffer)
+		return (NULL);
+	while (*buffer)
 	{
-		if (*s == i)
-			return ((char *)s);
-		s++;
+		if (*(unsigned char *)buffer == (unsigned char)to_find)
+			return ((char *)buffer);
+		buffer++;
 	}
-	if (i == '\0')
-		return ((char *)s);
-	return (0);
+	if (*(unsigned char *)buffer == (unsigned char)to_find)
+		return ((char *)buffer);
+	return (NULL);
 }
 
 char	*ft_strdup(const char *s)
@@ -67,27 +61,25 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_join(char *previous, const char *current)
 {
-	int		i;
-	int		j;
-	char	*str;
+	size_t	len_prev;
+	size_t	len_curr;
+	char	*merge;
 
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
+	len_prev = 0;
+	len_curr = 0;
+	if (previous)
+		len_prev = ft_strlen(previous);
+	len_curr = ft_strlen(current);
+	merge = (char *)malloc(len_prev + len_curr + 1);
+	if (!merge)
 		return (NULL);
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j] != '\0')
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
-	return (str);
+	if (previous)
+		ft_memcpy(merge, previous, len_prev);
+	ft_memcpy(merge + len_prev, current, len_curr);
+	merge[len_prev + len_curr] = '\0';
+	if (previous)
+		free(previous);
+	return (merge);
 }
