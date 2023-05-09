@@ -1,6 +1,5 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE 500
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -8,8 +7,9 @@
 # include <stdlib.h>
 #include <stdio.h>
 
-
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strlen(const char *str);
