@@ -10,8 +10,10 @@ static char	*ft_line(int fd, char *buf, char *backup)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes == -1)
+		{
 			free(backup);
 			return (NULL);
+		}	
 		else if (read_bytes == 0)
 			break ;
 		buf[read_bytes] = '\0';
