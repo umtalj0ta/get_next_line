@@ -11,7 +11,8 @@ static char	*ft_read(int fd, char *buf, char *backup)
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			backup = NULL;
+			free(buf);
+			free(backup);
 			return (NULL);
 		}	
 		else if (read_bytes == 0)
@@ -48,6 +49,7 @@ static char	*refresh_buffer(char *line)
 	line[count] = '\n';
 	line[count + 1] = '\0';
 	return (backup);
+	
 }
 
 char	*get_next_line(int fd)
@@ -70,23 +72,23 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int fd;
-// 	char *line;
+int	main(void)
+{
+	int fd;
+	char *line;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	line = get_next_line(-1);
-// 	printf("%s", line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
+	fd = open("test.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s", line);
+	line = get_next_line(-1);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
 
-// 	close(fd);
-// 	return (0);
-// }
+	close(fd);
+	return (0);
+}
