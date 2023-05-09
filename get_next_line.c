@@ -6,12 +6,17 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:20:36 by jgomes-v          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/08 12:52:28 by jgomes-v         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/09 20:04:33 by jgomes-v         ###   ########.fr       */
+>>>>>>> 906173c (update)
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+<<<<<<< HEAD
 char	*ft_free(char *buffer, char *buf)
 {
 	char	*temp;
@@ -22,18 +27,27 @@ char	*ft_free(char *buffer, char *buf)
 }
 
 static char	*ft_fillbuffer(int fd, char *result)
-{
-	char	*buffer;
-	int		read_bytes;
+=======
+#include "get_next_line.h"	
 
+static char	*ft_get_line(int fd, char *temp, char *backup)
+>>>>>>> 906173c (update)
+{
+	int		read_bytes;
+	char	*char_temp;
+
+<<<<<<< HEAD
 	if (!result)
 		result = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+=======
+>>>>>>> 906173c (update)
 	read_bytes = 1;
-	while (read_bytes > 0)
+	while (read_bytes != '\0')
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		read_bytes = read(fd, temp, BUFFER_SIZE);
 		if (read_bytes == -1)
+<<<<<<< HEAD
 		{
 			free(buffer);
 			return (NULL);
@@ -50,10 +64,30 @@ static char	*ft_fillbuffer(int fd, char *result)
 }
 
 static char	*get_the_line(char *buffer)
-{
-	char	*line;
-	int		i;
+=======
+			return (0);
+		else if (read_bytes == 0)
+			break ;
+		temp[read_bytes] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		char_temp = backup;
+		backup = ft_strjoin(char_temp, temp);
+		free(char_temp);
+		char_temp = NULL;
+		if (ft_strchr (temp, '\n'))
+			break ;
+	}
+	return (backup);
+}
 
+static char	*extract(char *line)
+>>>>>>> 906173c (update)
+{
+	size_t	count;
+	char	*backup;
+
+<<<<<<< HEAD
 	i = 0;
 	if (!buffer)
 		return (NULL);
@@ -62,10 +96,20 @@ static char	*get_the_line(char *buffer)
 	line = ft_calloc(i + 2, sizeof(char));
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
+=======
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0' || line[1] == '\0')
+		return (0);
+	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*backup == '\0')
+>>>>>>> 906173c (update)
 	{
-		line[i] = buffer[i];
-		i++;
+		free(backup);
+		backup = NULL;
 	}
+<<<<<<< HEAD
 	if (buffer[i] && buffer[i] == '\n')
 	{
 		line[i] = '\n';
@@ -99,13 +143,19 @@ static char	*clean_buffer(char *buffer)
 	}
 	free(buffer);
 	return (clean_buffer);
+=======
+	line[count + 1] = '\0';
+	return (backup);
+>>>>>>> 906173c (update)
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
 	char		*line;
+	char		*temp;
+	static char	*backup;
 
+<<<<<<< HEAD
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buffer = ft_fillbuffer(fd, buffer);
@@ -142,3 +192,46 @@ char	*get_next_line(int fd)
 
 	close(fd);
 }*/
+=======
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
+		return (0);
+	line = ft_get_line(fd, temp, backup);
+	free(temp);
+	temp = NULL;
+	if (!line)
+		return (NULL);
+	backup = extract(line);
+	return (line);
+}
+
+// int	main(void)
+// {
+// 	int fd;
+// 	char *line;
+
+// 	fd = open("test.txt", O_RDONLY);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+// 	line = get_next_line(fd);
+// 	printf("LINE : %s", line);
+// 	free(line);
+
+// 	close(fd);
+// }
+>>>>>>> 906173c (update)
