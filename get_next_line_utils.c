@@ -89,3 +89,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[i + j] = '\0';
 	return (str);
 }
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned int	i;
+	unsigned char	*string;
+
+	i = 0;
+	string = s;
+	while (n--)
+	{
+		string[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
+}
