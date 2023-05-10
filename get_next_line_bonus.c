@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read_to_backup(int fd, char *backup)
 {
@@ -87,15 +87,15 @@ char	*ft_clean_backup(char *backup)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*backup;
+	static char	*backup[FOPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (0);
-	backup = ft_read_to_backup(fd, backup);
-	if (!backup)
+	backup[fd] = ft_read_to_backup(fd, backup[fd]);
+	if (!backup[fd])
 		return (NULL);
-	line = ft_get_line(backup);
-	backup = ft_clean_backup(backup);
+	line = ft_get_line(backup[fd]);
+	backup[fd] = ft_clean_backup(backup[fd]);
 	return (line);
 }
 
